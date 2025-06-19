@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-client_id = "SEU_CLIENT_ID"
+client_id = "plus.do.brasil8567"
 client_secret = "SEU_CLIENT_SECRET"
 redirect_uri = "https://plusdobrasil.streamlit.app"
 
