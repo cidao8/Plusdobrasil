@@ -11,7 +11,6 @@ code = query_params.get("code", [None])[0]
 if code:
     st.success("Código recebido. Trocando por token...")
 
-    # 1. Troca o code pelo access_token
     token_url = "https://api.mercadolibre.com/oauth/token"
     payload = {
         "grant_type": "authorization_code",
@@ -22,12 +21,15 @@ if code:
     }
 
     response = requests.post(token_url, data=payload)
+
+    # Mostra resposta completa para depuração
+    st.code(response.text)
+
     if response.status_code == 200:
         token_data = response.json()
         access_token = token_data["access_token"]
         st.success("Autenticado com sucesso!")
 
-        # 2. Aqui você coloca a consulta de dados do usuário
         headers = {"Authorization": f"Bearer {access_token}"}
         usuario = requests.get("https://api.mercadolibre.com/users/me", headers=headers).json()
 
