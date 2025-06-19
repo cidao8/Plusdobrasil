@@ -1,8 +1,8 @@
 import streamlit as st
 import requests
 
-client_id = "plus.do.brasil8567"
-client_secret = "SEU_CLIENT_SECRET"
+client_id = "5497070945628337"
+client_secret = "DYrHDUoH19MG5LdLTsLRKXDFvXqbUGwu"
 redirect_uri = "https://plusdobrasil.streamlit.app"
 
 query_params = st.query_params
