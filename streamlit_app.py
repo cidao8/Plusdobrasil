@@ -1,11 +1,10 @@
 import streamlit as st
 import requests
-from urllib.parse import urlparse, parse_qs
 
 st.title("🔐 Login com Mercado Livre")
 
-# Pegamos o código da URL se existir
-query_params = st.experimental_get_query_params()
+# ✅ Nova forma de obter o code da URL
+query_params = st.query_params
 code = query_params.get("code", [None])[0]
 
 client_id = "SEU_CLIENT_ID"
@@ -14,7 +13,6 @@ redirect_uri = "https://plusdobrasil.streamlit.app"
 
 if code:
     st.success("Código de autorização recebido!")
-    # Troca o code pelo access_token
     url_token = "https://api.mercadolibre.com/oauth/token"
     payload = {
         "grant_type": "authorization_code",
@@ -32,6 +30,5 @@ if code:
     else:
         st.error("Erro ao obter o token.")
 else:
-    # Gera link de autorização
     auth_url = f"https://auth.mercadolivre.com.br/authorization?response_type=code&client_id={client_id}&redirect_uri={redirect_uri}"
-    st.markdown(f"[Clique aqui para autorizar o app com sua conta Mercado Livre]({auth_url})")
+    st.markdown(f"[👉 Clique aqui para autorizar o app com sua conta Mercado Livre]({auth_url})")
